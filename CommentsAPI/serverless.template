@@ -32,7 +32,6 @@
         "MemorySize": 256,
         "Timeout": 30,
         "Role": "arn:aws:iam::831210339789:role/CommentProcessor",
-        "Policies": [ "AWSLambdaFullAccess" ],
         "Environment" : {
           "Variables" : {
             "AppS3Bucket" : { "Fn::If" : ["CreateS3Bucket", {"Ref":"Bucket"}, { "Ref" : "BucketName" } ] }
