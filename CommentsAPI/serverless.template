@@ -26,12 +26,12 @@
     "AspNetCoreFunction" : {
       "Type" : "AWS::Serverless::Function",
       "Properties": {
-        "Handler": "AWSServerless1::AWSServerless1.LambdaEntryPoint::FunctionHandlerAsync",
+        "Handler": "CommentsAPI::CommentsAPI.LambdaEntryPoint::FunctionHandlerAsync",
         "Runtime": "dotnetcore2.0",
         "CodeUri": "",
         "MemorySize": 256,
         "Timeout": 30,
-        "Role": null,
+        "Role": "arn:aws:iam::831210339789:role/CommentProcessor",
         "Policies": [ "AWSLambdaFullAccess" ],
         "Environment" : {
           "Variables" : {

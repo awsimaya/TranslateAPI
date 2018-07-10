@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "AWSServerless1": {
+    "CommentsAPI": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

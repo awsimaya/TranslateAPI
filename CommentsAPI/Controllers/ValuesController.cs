@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AWSServerless1.Controllers
+namespace CommentsAPI.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller

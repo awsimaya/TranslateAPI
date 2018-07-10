@@ -40,22 +40,22 @@ To view your deployed application open the Stack View window by double-clicking 
 
 ## Here are some steps to follow to get started from the command line:
 
-Once you have edited your template and code you can use the following command lines to deploy your application from the command line (these examples assume the project name is *AWSServerless1*):
+Once you have edited your template and code you can use the following command lines to deploy your application from the command line (these examples assume the project name is *CommentsAPI*):
 
 Restore dependencies
 ```
-    cd "AWSServerless1"
+    cd "CommentsAPI"
     dotnet restore
 ```
 
 Execute unit tests
 ```
-    cd "AWSServerless1/test/AWSServerless1.Tests"
+    cd "CommentsAPI/test/CommentsAPI.Tests"
     dotnet test
 ```
 
 Deploy application
 ```
-    cd "AWSServerless1/src/AWSServerless1"
+    cd "CommentsAPI/src/CommentsAPI"
     dotnet lambda deploy-serverless
 ```
