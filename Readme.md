@@ -1,45 +1,21 @@
-# What does this do?
-This project has a lambda function that takes a text string as input, identifies the sentiment of the text through Amazon Comprehend service. If the text is found to have a _NEGATIVE_ sentiment, it triggers a notification to a topic. All subscribers to that topic will get the notification message.
+# What does this application do?
+This project has a lambda function that takes a text string as input, identifies the sentiment of the text through Amazon Comprehend service. If the text is found to have a _NEGATIVE_ sentiment, it triggers a notification to a topic. All subscribers to that topic will receive the notification message.
 
-# ASP.NET Core Web API Serverless Application
+# Setup Instructions (for Visual Studio on Windows)
+* Clone the repository to your local machine
+* Create an IAM Role and attach the following policies to it
+    * ComprehendReadOnly
+    * AmazonSNSFullAccess
+* Open serverless.template file and update the _Role_ attribute with the ARN of the IAM Policy you created in the previous step
+* Build and make sure there are no build errors
+* Right click on the project name and select _Publish to AWS Lambda..._ from the context menu
+* Make sure the value for _ShouldCreateSNSTopic_ is set to true when you run the template for the first time and publish
+* Once completed successfully, you should be able to see a setup similar to this on the AWS Lambda console
+![API Setup](API.png)
+* Navigate to SNS home page on the AWS Console, you should be able to see a new topic called _CommentNotifier_ there
+* Create a new email subscription to the topic and set it up to receive emails
+* You should be able to invoke the Lambda through the API Gateway using Postman or similar tools. If you send a negative text, the Lambda will sense it through AWS Comprehend and send you a notification through SNS
 
-This project shows how to run an ASP.NET Core Web API project as an AWS Lambda exposed through Amazon API Gateway. The NuGet package [Amazon.Lambda.AspNetCoreServer](https://www.nuget.org/packages/Amazon.Lambda.AspNetCoreServer) contains a Lambda function that is used to translate requests from API Gateway into the ASP.NET Core framework and then the responses from ASP.NET Core back to API Gateway.
-
-The project starts with two Web API controllers. The first is the example ValuesController that is created by default for new ASP.NET Core Web API projects. The second is S3ProxyController which uses the AWS SDK for .NET to proxy requests for an Amazon S3 bucket.
-
-
-### Configuring AWS SDK for .NET ###
-
-To integrate the AWS SDK for .NET with the dependency injection system built into ASP.NET Core the NuGet package [AWSSDK.Extensions.NETCore.Setup](https://www.nuget.org/packages/AWSSDK.Extensions.NETCore.Setup/) is referenced. In the Startup.cs file the Amazon S3 client is added to the dependency injection framework. The S3ProxyController will get its S3 service client from there.
-
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddMvc();
-
-    // Add S3 to the ASP.NET Core dependency injection framework.
-    services.AddAWSService<Amazon.S3.IAmazonS3>();
-}
-```
-
-### Project Files ###
-
-* serverless.template - an AWS CloudFormation Serverless Application Model template file for declaring your Serverless functions and other AWS resources
-* aws-lambda-tools-defaults.json - default argument settings for use with Visual Studio and command line deployment tools for AWS
-* LambdaEntryPoint.cs - class that derives from **Amazon.Lambda.AspNetCoreServer.APIGatewayProxyFunction**. The code in this file bootstraps the ASP.NET Core hosting framework. The Lambda function is defined in the base class.
-* LocalEntryPoint.cs - for local development this contains the executable Main function which bootstraps the ASP.NET Core hosting framework with Kestrel, as for typical ASP.NET Core applications.
-* Startup.cs - usual ASP.NET Core Startup class used to configure the services ASP.NET Core will use.
-* web.config - used for local development.
-* Controllers\S3ProxyController - Web API controller for proxying an S3 bucket
-* Controllers\ValuesController - example Web API controller
-
-You may also have a test project depending on the options selected.
-
-## Here are some steps to follow from Visual Studio:
-
-To deploy your Serverless application, right click the project in Solution Explorer and select *Publish to AWS Lambda*.
-
-To view your deployed application open the Stack View window by double-clicking the stack name shown beneath the AWS CloudFormation node in the AWS Explorer tree. The Stack View also displays the root URL to your published application.
 
 ## Here are some steps to follow to get started from the command line:
 
