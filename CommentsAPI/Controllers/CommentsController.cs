@@ -38,17 +38,13 @@ namespace CommentsAPI.Controllers
                     {
                         using (var snsClient = new AmazonSimpleNotificationServiceClient(Amazon.RegionEndpoint.USEast1))
                         {
-
                             var response = await snsClient.PublishAsync(new PublishRequest()
                             {
                                 Subject = "Negative Comment",
                                 Message = $"Someone posted this negative comment on your blog. Check it out {Environment.NewLine} {commentText}",
                                 TargetArn = "arn:aws:sns:us-east-1:831210339789:CommentNotifier"
                             });
-
-
                         }
-
                     }
                 }
             }

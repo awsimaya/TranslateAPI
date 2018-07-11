@@ -12,7 +12,7 @@ namespace CommentsAPI
 {
     public class Startup
     {
-        public const string AppS3BucketKey = "AppS3Bucket";
+       // public const string AppS3BucketKey = "AppS3Bucket";
 
         public Startup(IConfiguration configuration)
         {
