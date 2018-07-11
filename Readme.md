@@ -1,7 +1,7 @@
-# What does this application do?
+## What does this application do?
 This project has a lambda function that takes a text string as input, identifies the sentiment of the text through Amazon Comprehend service. If the text is found to have a _NEGATIVE_ sentiment, it triggers a notification to a topic. All subscribers to that topic will receive the notification message.
 
-# Setup Instructions (for Visual Studio on Windows)
+## Setup Instructions (for Visual Studio on Windows)
 * Clone the repository to your local machine
 * Create an IAM Role and attach the following policies to it
     * ComprehendReadOnly
@@ -14,6 +14,8 @@ This project has a lambda function that takes a text string as input, identifies
 ![API Setup](API.png)
 * Navigate to SNS home page on the AWS Console, you should be able to see a new topic called _CommentNotifier_ there
 * Create a new email subscription to the topic and set it up to receive emails
+* In your project, open CommentsController.cs and update the _TargetArn_ property with the ARN of the CommentNotifier topic from the AWS Console
+* Publish the template once again
 * You should be able to invoke the Lambda through the API Gateway using Postman or similar tools. If you send a negative text, the Lambda will sense it through AWS Comprehend and send you a notification through SNS
 
 
