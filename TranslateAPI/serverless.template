@@ -3,31 +3,19 @@
   "Transform" : "AWS::Serverless-2016-10-31",
   "Description" : "An AWS Serverless Application that uses the ASP.NET Core framework running in Amazon Lambda.",
 
-  "Parameters" : {
-  
-	"ShouldCreateSNSTopic": {
-		"Type": "String",
-		"AllowedValues" : ["true","false"],
-		"Description" : "If true then a SNS Topic will be created"
-	}
-  },
-
-  "Conditions" : {
-	"CreateSNSTopic" : {"Fn::Equals":[{"Ref": "ShouldCreateSNSTopic"}, "true"]}
-  },
-
   "Resources" : {
 
     "AspNetCoreFunction" : {
       "Type" : "AWS::Serverless::Function",
       "Properties": {
-		"FunctionName":"CommentsAPIFunction",
-		"Handler": "CommentsAPI::CommentsAPI.LambdaEntryPoint::FunctionHandlerAsync",
+		"FunctionName":"TranslateAPI",
+		"Handler": "TranslateAPI::TranslateAPI.LambdaEntryPoint::FunctionHandlerAsync",
         "Runtime": "dotnetcore2.0",
         "CodeUri": "",
         "MemorySize": 256,
         "Timeout": 30,
-        "Role": "arn:aws:iam::831210339789:role/CommentProcessor",
+        "Role": null,
+		"Policies":["TranslateReadOnly"],
         "Events": {
           "PutResource": {
             "Type": "Api",
@@ -38,17 +26,7 @@
           }
         }
       }
-    },
-
-	"SNSTopic":{
-		"Type":"AWS::SNS::Topic",
-		"Description":"SNS topic to create notifications",
-		"Condition": "CreateSNSTopic",
-		"Properties": {
-			"TopicName":"CommentNotifier",
-			"DisplayName":"CommNotif"
-				}
-			}
+    }
   },
 
   "Outputs" : {

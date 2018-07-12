@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "CommentsAPI": {
+    "TranslateAPI": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

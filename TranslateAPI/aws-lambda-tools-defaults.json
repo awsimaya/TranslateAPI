@@ -10,9 +10,9 @@
     "region"      : "us-east-1",
     "configuration" : "Release",
     "framework"     : "netcoreapp2.0",
-    "s3-prefix"     : "CommentsAPI/",
+    "s3-prefix"     : "TranslateAPI/",
     "template"      : "serverless.template",
-    "template-parameters" : "\"ShouldCreateSNSTopic\"=\"false\"",
+    "template-parameters" : "",
     "s3-bucket"           : "imaya-lambda-apps",
-    "stack-name"          : "CommentsAPI-Stack"
+    "stack-name"          : "TranslateAPI-Stack"
 }
